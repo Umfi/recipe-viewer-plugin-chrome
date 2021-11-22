@@ -1,0 +1,21 @@
+{
+    "name": "Recipe Viewer",
+    "description": "This browser extension extracts the important parts and displays them to the user in a clear and easy to understand way. Additionally, it has a cooking mode that navigates the user through the cooking process.",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "action": {},
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+          "matches": ["https://*.chefkoch.de/*", "https://*.ichkoche.at/*", "https://*.gutekueche.at/*"],
+          "css": ["styles.css"],
+          "js": ["scraper.js", "viewer.js", "bs-stepper.min.js", "easytimer.min.js", "cookingmode.js"]
+        }
+    ]
+  }
