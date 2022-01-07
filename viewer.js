@@ -37,6 +37,8 @@ function generateHtml(scrapedContent) {
                     </div>
                     <div class="col-6 d-block m-auto text-center">
                         <img class="recipe-picture" src="${scrapedContent.image}" />
+                        <br>
+                        <span class="badge rounded-pill bg-primary" style=" font-size: 15px; margin-top: 10px; ">${scrapedContent.kcal} kcal</span>
                     </div>
                 </div>
                 <div class="row mt-3">

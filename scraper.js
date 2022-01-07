@@ -17,7 +17,8 @@ class Scraper {
             heading: '',
             image: '',
             ingredients: '',
-            instructions: ''
+            instructions: '',
+            kcal: "-"
         };
 
         this.startScraping(url);
@@ -36,6 +37,7 @@ class Scraper {
     scrapeSite(siteName) {
         this.scrapeHeading(siteName);
         this.scrapeImage(siteName);
+        this.scrapeCalories(siteName);
         this.scrapeIngredients(siteName);
         this.scrapeInstructions(siteName);
     }
@@ -54,6 +56,18 @@ class Scraper {
         } else if (siteName === SITES.GUTEKUECHE) {
             const $heading = document.querySelector('article h1');
             this.scrapedContent.heading = $heading.textContent;
+        }
+    }
+
+    scrapeCalories(siteName) {
+        if (siteName === SITES.CHEFKOCH) {
+            const $heading = document.querySelector('.recipe-kcalories');
+            this.scrapedContent.kcal = $heading.textContent.replace("\n", "").replace("kcal\n","").trim();
+        } else if (siteName === SITES.ICHKOCHE) {
+            this.scrapedContent.kcal = "-";
+        } else if (siteName === SITES.GUTEKUECHE) {
+            const $heading = document.querySelector('.nutri-block');
+            this.scrapedContent.kcal = $heading.innerText.replace("kcal\n","").trim();
         }
     }
 
